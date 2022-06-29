@@ -6,27 +6,16 @@ namespace AytamyBackend.Controllers;
 [Route("[controller]")]
 public class UserController : ControllerBase
 {
-    private static readonly string[] Summaries = new[]
-    {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
+    private readonly DataContext _dbContext;
 
-    private readonly ILogger<UserController> _logger;
-
-    public UserController(ILogger<UserController> logger)
+    public UserController(DataContext dbContext)
     {
-        _logger = logger;
+        _dbContext = dbContext;
     }
 
-    [HttpGet(Name = "GetWeatherForecast")]
-    public IEnumerable<WeatherForecast> Get()
+    [HttpGet(Name = "GetUsers")]
+    public async Task<ActionResult<List<User>>> GetAsync()
     {
-        return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-        {
-            Date = DateTime.Now.AddDays(index),
-            TemperatureC = Random.Shared.Next(-20, 55),
-            Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-        })
-        .ToArray();
+        return Ok(await _dbContext.users.ToListAsync());
     }
 }
