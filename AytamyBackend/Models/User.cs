@@ -2,10 +2,10 @@
 
 public class User
 {
-    public int userID { get; set; }
-    public string name { get; set; } = String.Empty;
-    public string email { get; set; } = String.Empty;
-    public string phone { get; set; } = String.Empty;
-    public DateTime createdAt { get; set; }
-    public DateTime updatedAt { get; set; }
-}  
+    public int UserID { get; set; }
+    public string Name { get; set; } = String.Empty;
+    public string Email { get; set; } = String.Empty;
+    public string Phone { get; set; } = String.Empty;
+    public DateTime CreatedAt { get; set; }
+    public DateTime UpdatedAt { get; set; }
+}
